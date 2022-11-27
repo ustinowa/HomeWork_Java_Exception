@@ -1,52 +1,73 @@
+import java.util.Scanner;
+
 public class HomeWork_2 {
-    public static void main(String[] args) {
+    //Task_1
+    public static void EnterFloatNumber() {
+        Scanner scanner = new Scanner(System.in);
 
-
-//        private static void checkLengths(int arr1Length, int arr2Length) throws Exception {
-//            if (arr1Length != arr2Length) {
-//                throw new Exception("Length of both arrays should be equals, try again");
-//            }
-//        }
-//
-//        public static int getNumber(String message) {
-//            System.out.println(message);
-//            boolean ok = false;
-//            while(!ok) {
-//                try {
-//                    Scanner sc = new Scanner(System.in);
-//                    int num = sc.nextInt();
-//                    return num;
-//                } catch (Exception e) {
-//                    System.out.println("Wrong number, try again.");
-//                }
-//            }
-//            return -1;
-//        }
-//        public static void fill() {
-//            int arr1Length = getNumber("Input first array length");
-//            boolean ok2 = false;
-//            while (!ok2) {
-//                try {
-//                    int arr2Length = getNumber("Input second array length");
-//                    checkLengths(arr1Length, arr2Length);
-//                    ok2 = true;
-//                } catch (Exception e) {
-//                    System.out.println("Wrong size of second array, try again");
-//                }
-//            }
-//            int[] arr1 = new int[arr1Length];
-//            int[] arr2 = new int[arr1Length];
-//            for (int i = 0; i < arr1Length; i++) {
-//                int num = getNumber("Input " + i + " element of first array");
-//                arr1[i] = num;
-//            }
-//            for (int i = 0; i < arr1Length; i++) {
-//                int num = getNumber("Input " + i + " element of second array");
-//                arr2[i] = num;
-//            }
-//            System.out.println(Arrays.toString(arr1));
-//            System.out.println(Arrays.toString(arr2));
-//        }
+        while (true) {
+            try {
+                System.out.println("Введите дробное число");
+                if (!scanner.hasNextFloat()) throw new RuntimeException("Введены неверные данные. Попробуйте еще раз");
+            } catch (RuntimeException e) {
+                System.out.println(e);
+                String line = scanner.nextLine();
+            }
+            float num = scanner.nextFloat();
+            System.out.println("Введенное значение: " + num);
+            break;
+        }
     }
 
+    //Task_2
+    public static void task2() {
+        try {
+            int[] intArray = new int[9];
+            intArray[8] = 5;
+            int d = 0;
+            double catchedRes1 = intArray[8] / d;
+            System.out.println("catchedRes1 = " + catchedRes1);
+        } catch (ArithmeticException e) {
+            System.out.println("Catching exception: " + e);
+        }
+    }
+
+    //    Task_3
+    public static void printSum(Integer a, Integer b) throws Exception {
+        System.out.println(a + b);
+    }
+
+    //Task_4
+    public static void EnterString() {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Введите строку");
+            String str = scanner.nextLine();
+            if (str == "") throw new RuntimeException("Нельзя вводить пустую строку");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Task_1");
+        HomeWork_2.EnterFloatNumber();
+        System.out.println("Task_2");
+        try {
+            int a = 90;
+            int b = 3;
+            System.out.println(a / b);
+            printSum(23, 234);
+            int[] abc = {1, 2};
+            abc[3] = 9;
+        } catch (NullPointerException ex) {
+            System.out.println("Указатель не может указывать на null!");
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("Массив выходит за пределы своего размера!");
+        } catch (Throwable ex) {
+            System.out.println("Что-то пошло не так...");
+        }
+        System.out.println("Task_4");
+        HomeWork_2.EnterString();
+    }
 }
